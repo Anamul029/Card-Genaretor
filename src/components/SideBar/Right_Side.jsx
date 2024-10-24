@@ -4,8 +4,8 @@ import { StateContext } from "../../context/globalContext";
 
 const Right_Side = () => {
 
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType,SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, cardRank, setCardRank, effectNames, setEffectNames, effectDetails, setEffectDetails } = useContext(StateContext);
-  const maxLength = 50; // Set the maximum length for effect names based on available space
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, cardRank, setCardRank, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial,currentView, setCurrentView } = useContext(StateContext);
+  const maxLength = 100; // Set the maximum length for effect names based on available space
 
   // Subset গুলো ড্রপডাউন মেনুতে দেখানোর জন্য একটি লিস্ট তৈরি করা হলো
   const subsets = [
@@ -75,6 +75,11 @@ const Right_Side = () => {
   // function for setting defence value 
   const handleSetDefence = e => {
     setDefence(e.target.value)
+  }
+
+  // manage Serial SR1 to SR10
+  const handleSerial = e => {
+    setSerial(e.target.value);
   }
 
   // function for set Effect Name
@@ -195,6 +200,25 @@ const Right_Side = () => {
             <option> Assault</option>
             <option>Defense</option>
             <option>Support</option>
+          </select>
+        </div>
+        {/* input field for SR  */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text uppercase font-semibold text-white">
+              Synergy Rating            </span>
+          </label>
+          <select value={serial} onChange={handleSerial} className="select bg-black select-bordered w-full">
+            <option>SR1</option>
+            <option>SR2</option>
+            <option>SR3</option>
+            <option>SR4</option>
+            <option>SR5</option>
+            <option>SR6</option>
+            <option>SR7</option>
+            <option>SR8</option>
+            <option>SR9</option>
+            <option>SR10</option>
           </select>
         </div>
 
@@ -334,7 +358,7 @@ const Right_Side = () => {
 
       {/* demo image test */}
       {/* Displaying effect details on the card */}
-  
+
     </div>
   );
 };

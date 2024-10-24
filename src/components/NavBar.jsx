@@ -1,10 +1,10 @@
 
 const NavBar = () => {
     return (
-        <div className="font-mono">
+        <div className="font-immortal">
             <div className="navbar bg-blue-950 shadow-2xl w-full flex justify-between">
                 <div className="">
-                    <a className="btn btn-ghost md:font-bold md:text-3xl">Card Editor
+                    <a className="btn btn-ghost md:font-bold md:text-3xl">Card Maker Pro
                     </a>
                 </div>
                 <div>

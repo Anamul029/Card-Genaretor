@@ -11,14 +11,14 @@ const StateProvider = ({ children }) => {
   const [customIcon, setCustomIcon] = useState(null);
   const [cardType, setCardType] = useState('');
   const [SelectCardType, setSelectCardType] = useState('');
-
+  const [serial,setSerial] = useState('');
   const [attack, setAttack] = useState('');
   const [defence, setDefence] = useState('');
   const [effectName, setEffectName] = useState('');
-  const [cardRank, setCardRank] = useState('');
+  const [cardRank, setCardRank] = useState('R1');
   const [effectNames, setEffectNames] = useState(['']); // Start with one empty effect name
   const [effectDetails, setEffectDetails] = useState(['']); // Corresponding effect details
-
+  const [currentView, setCurrentView] = useState('general');
 
 
 
@@ -27,7 +27,7 @@ const StateProvider = ({ children }) => {
 
   return (
     <StateContext.Provider
-      value={{ name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType, attack, setAttack, defence, setDefence, effectName, setEffectName,cardRank, setCardRank,effectNames, setEffectNames,effectDetails, setEffectDetails,SelectCardType, setSelectCardType }
+      value={{ name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType, attack, setAttack, defence, setDefence, effectName, setEffectName,cardRank, setCardRank,effectNames, setEffectNames,effectDetails, setEffectDetails,SelectCardType, setSelectCardType,serial,setSerial,currentView, setCurrentView }
       }>
       {children}
     </StateContext.Provider>

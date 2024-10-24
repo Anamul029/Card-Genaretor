@@ -1,9 +1,14 @@
 import * as htmlToImage from "html-to-image";
 import { useContext, useRef, useState } from "react";
 import BckImg1 from "../../assets/images/RANK 1.png";
-import BckImg13 from "../../assets/images/RANK 2.png";
-import BckImg4 from "../../assets/images/RANK 2 ID.png";
-import BckImg2 from "../../assets/images/RANK 1 ID.png";
+import BckImgID1 from "../../assets/images/RANK 1 ID.png";
+import BckImg2 from "../../assets/images/RANK 2.png";
+import BckImgID2 from "../../assets/images/RANK 2 ID.png";
+import BckImg3 from "../../assets/images/RANK 3.png";
+import BckImgID3 from "../../assets/images/RANK 3 ID.png";
+import BckImg4 from "../../assets/images/RUNE 1.png";
+import BckImgID4 from "../../assets/images/BLANK.png";
+
 import { StateContext } from "../../context/globalContext";
 import The_Wandering_Subset from "../../assets/images/THE WANDERING SUBSET.png"
 import The_Forest_Guard_Subset from "../../assets/images/THE FOREST GUARD SUBSET.png"
@@ -21,8 +26,8 @@ import The_Swamp_Dweller_Subset from "../../assets/images/The Swamp Dweller Subs
 import The_Harpy_Subset from "../../assets/images/The Harpy Subset Icon.png"
 const Left_Side = () => {
   // new practice
-  const [currentView, setCurrentView] = useState('standard'); // Initial view is 'standard'
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType,SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails } = useContext(StateContext);
+  // const [currentView, setCurrentView] = useState('standard'); // Initial view is 'standard'
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardRank, setCardRank, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial,currentView, setCurrentView } = useContext(StateContext);
   console.log(cardType);
   // Mapping the subset names to their respective icons
   const subsetIcons = {
@@ -42,10 +47,29 @@ const Left_Side = () => {
     "The_Harpy_Subset": The_Harpy_Subset,
   };
 
+  // Sample images for each rank
+  const images = {
+    R1: { general: BckImg1, id: BckImgID1 },
+    R2: { general: BckImg2, id: BckImgID2 },
+    R3: { general: BckImg3, id: BckImgID3 },
+    Runes: { general:BckImg4, id: BckImgID4 }
+  };
+  // State to manage selected rank
+  // const [selectedRank, setSelectedRank] = useState('R1');
+  
+  // State to track which image is currently shown (general or id)
+  // const [currentView, setCurrentView] = useState('general');
+
+
+
+
+
   const selectedIcon = subsetIcons[selectedSubset] || ""; // Get the icon based on the 
   // Templete View পরিবর্তনের জন্য ফাংশন
   const switchView = () => {
-    setCurrentView((prevView) => (prevView === 'standard' ? 'idCard' : 'standard'));
+    // setCurrentView((prevView) => (prevView === 'standard' ? 'idCard' : 'standard'));
+    setCurrentView((prevView) => (prevView === 'general' ? 'id' : 'general'));
+
   };
   // set reload on click the new card button
   const reloadWebsite = () => {
@@ -89,12 +113,14 @@ const Left_Side = () => {
       icon: selectedIcon,
       image: image,
       cardType: cardType, // this can be base64 or a URL
-      SelectCardType:SelectCardType,
+      SelectCardType: SelectCardType,
       attack: attack,
+      cardRank: cardRank,
       defence: defence,
       effectName: effectName,
-      effectNames:effectNames,
-      effectDetails:effectDetails,
+      effectNames: effectNames,
+      effectDetails: effectDetails,
+      serial: serial,
     };
     // Convert object to JSON string
     const jsonString = JSON.stringify(cardData, null, 2); // Indented for readability
@@ -134,13 +160,15 @@ const Left_Side = () => {
         setSelectedSubset(jsonData.subset || '');
         setImage(jsonData.image || '');
         setCustomIcon(jsonData.icon || '');
+        setCardRank(jsonData.cardRank || '');
         setCardType(jsonData.cardType || '');
+        setSerial(jsonData.serial || '');
         setSelectCardType(jsonData.SelectCardType || '');
         setEffectName(jsonData.effectName || '');
         setAttack(jsonData.attack || 0)
         setDefence(jsonData.defence || 0)
-        setEffectNames(jsonData.effectNames|| [''])
-        setEffectDetails(jsonData.effectDetails|| [''])
+        setEffectNames(jsonData.effectNames || [''])
+        setEffectDetails(jsonData.effectDetails || [''])
         // setAttackValue(jsonData.attack || 0);
         // setDefenseValue(jsonData.defense || 0);
         setCardType(jsonData.cardType || null); // Load base64 or URL of the card image
@@ -154,20 +182,21 @@ const Left_Side = () => {
     <div className=" md:w-2/5 z-50 relative">
       <div ref={divEle} onClick={handleJpg}>
         {/* Genarel Rank image start................................................................ */}
-        {currentView === 'standard' && (
+        {currentView === 'general' && (
           <div>
             <img
               className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-              src={BckImg13}
+              // src={BckImg2}
+              src={images[cardRank].general}
               alt="Standard Card"
             />
             {/* Add your additional HTML code here */}
             <div className="text-center mt-4">
-              <div className="absolute left-[30%] top-14 z-50 text-2xl text-white font-bold">
-                {name}
+              <div className="absolute left-[30%] top-[8%] z-50 text-2xl font-bold">
+                <h2 className="text-center text-black">{name}</h2>
               </div>
               {/* Selected Subset Icon */}
-              <div className="mt-4 absolute left-[19%] top-[9.4%] z-50">
+              <div className="mt-4 absolute left-[18.9%] top-[8.4%] z-50">
                 <div className="w-12 h-12 border-2 border-gray-500 rounded-full flex items-center justify-center">
                   {selectedIcon ? (
                     <img src={selectedIcon} alt={selectedSubset} className="w-full h-full object-contain" />
@@ -179,18 +208,18 @@ const Left_Side = () => {
                 </div>
               </div>
               {/* defense value setup */}
-              <div className="absolute md:left-[68%] md:bottom-[21.7%]">
+              <div className="absolute md:left-[68%] md:bottom-[28%]">
                 <h1 className="md:text-xl md:font-semibold">{defence}</h1>
               </div>
               {/* Attack value setup */}
-              <div className="absolute md:left-[25.4%] md:bottom-[21.5%]">
+              <div className="absolute md:left-[25.4%] md:bottom-[27.8%]">
                 <h1 className="md:text-xl md:font-semibold">{attack}</h1>
               </div>
               {/* effectName value setup */}
               {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
                 <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
               </div> */}
-              <div className="effect-boxes absolute md:left-[32.4%] md:bottom-[23.7%]">
+              <div className="effect-boxes absolute md:left-[32.4%] md:bottom-[28.7%]">
                 {effectNames.map((detail, index) => (
                   <div key={index} className="effect-detail-box">
                     <p className="mb-10">{effectNames[index]}</p>
@@ -206,10 +235,10 @@ const Left_Side = () => {
         )}
         {/* Genarel Rank image end......................................................... */}
         {/* ID Card Image start.......................................................*/}
-        {currentView === 'idCard' && (
+        {currentView === 'id' && (
           <div>
             {/* card details */}
-            <div className="effect-boxes absolute md:left-[25.4%] md:w-[50%] md:top-[17.7%] grid grid-cols-1 gap-5">
+            <div className="effect-boxes text-black absolute md:left-[25.4%] md:w-[50%] md:top-[17.7%] grid grid-cols-1 gap-5">
               {effectDetails.map((detail, index) => (
                 <div key={index} className="effect-detail-box p-2 md:h-24">
                   <p className="mb-10"> <span>{effectDetails[index]}</span></p>
@@ -218,29 +247,26 @@ const Left_Side = () => {
             </div>
             <img
               className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-              src={BckImg4}
+              // src={BckImgID2}
+              src={images[cardRank].id}
               alt="ID Card"
             />
             {/* Add your additional HTML code here */}
             <div className="text-center mt-4">
-              <div className="absolute left-[30%] top-14 z-50 text-2xl text-white font-bold">
-                {name}
+              <div className="absolute left-[30%]  top-[8%] z-50 text-2xl text-white font-bold">
+                <h2 className="text-center text-black">{name}</h2>
               </div>
               {/* Selected Subset Icon */}
-              <div className="mt-4 absolute left-[19%] top-[9.4%] z-50">
-                <div className="w-12 h-12 border-2 border-gray-500 rounded-full flex items-center justify-center">
-                  {selectedIcon ? (
-                    <img src={selectedIcon} alt={selectedSubset} className="w-full h-full object-contain" />
-                  ) : customIcon ? (
-                    <img src={customIcon} alt="Custom Icon" className="w-full h-full rounded-full object-contain" />
-                  ) : (
-                    <p className="text-gray-400"></p> // Optional placeholder if no icon is selected/uploaded
-                  )}
-                </div>
+              <div className="mt-4 absolute left-[20%] top-[10.6%] z-50">
+                <h2>{serial}</h2>
               </div>
               {/* card type change */}
-              <div className="absolute md:left-[76%] md:bottom-[24%]">
+              <div className="absolute md:left-[76.3%] md:bottom-[29.7%]">
                 <h1 className="text-xs">{cardType}</h1>
+              </div>
+              {/* card Rank change */}
+              <div className="absolute md:left-[19%] md:bottom-[29%]">
+                <h1 className="text- font-semubold">{cardRank}</h1>
               </div>
 
               {/* image */}
