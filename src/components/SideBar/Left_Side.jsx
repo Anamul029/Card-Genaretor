@@ -1,6 +1,8 @@
 import * as htmlToImage from "html-to-image";
 import { useContext, useRef, useState } from "react";
 import BckImg1 from "../../assets/images/RANK 1.png";
+import BckImg13 from "../../assets/images/RANK 2.png";
+import BckImg4 from "../../assets/images/RANK 2 ID.png";
 import BckImg2 from "../../assets/images/RANK 1 ID.png";
 import { StateContext } from "../../context/globalContext";
 import The_Wandering_Subset from "../../assets/images/THE WANDERING SUBSET.png"
@@ -20,7 +22,7 @@ import The_Harpy_Subset from "../../assets/images/The Harpy Subset Icon.png"
 const Left_Side = () => {
   // new practice
   const [currentView, setCurrentView] = useState('standard'); // Initial view is 'standard'
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType,attack, setAttack, defence, setDefence,effectName,setEffectName } = useContext(StateContext);
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType,SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails } = useContext(StateContext);
   console.log(cardType);
   // Mapping the subset names to their respective icons
   const subsetIcons = {
@@ -87,9 +89,12 @@ const Left_Side = () => {
       icon: selectedIcon,
       image: image,
       cardType: cardType, // this can be base64 or a URL
-      attack:attack,
-      defence:defence,
-      effectName:effectName,
+      SelectCardType:SelectCardType,
+      attack: attack,
+      defence: defence,
+      effectName: effectName,
+      effectNames:effectNames,
+      effectDetails:effectDetails,
     };
     // Convert object to JSON string
     const jsonString = JSON.stringify(cardData, null, 2); // Indented for readability
@@ -130,9 +135,12 @@ const Left_Side = () => {
         setImage(jsonData.image || '');
         setCustomIcon(jsonData.icon || '');
         setCardType(jsonData.cardType || '');
+        setSelectCardType(jsonData.SelectCardType || '');
         setEffectName(jsonData.effectName || '');
         setAttack(jsonData.attack || 0)
         setDefence(jsonData.defence || 0)
+        setEffectNames(jsonData.effectNames|| [''])
+        setEffectDetails(jsonData.effectDetails|| [''])
         // setAttackValue(jsonData.attack || 0);
         // setDefenseValue(jsonData.defense || 0);
         setCardType(jsonData.cardType || null); // Load base64 or URL of the card image
@@ -150,7 +158,7 @@ const Left_Side = () => {
           <div>
             <img
               className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-              src={BckImg1}
+              src={BckImg13}
               alt="Standard Card"
             />
             {/* Add your additional HTML code here */}
@@ -171,16 +179,23 @@ const Left_Side = () => {
                 </div>
               </div>
               {/* defense value setup */}
-              <div className="absolute md:left-[68%] md:bottom-[24.7%]">
+              <div className="absolute md:left-[68%] md:bottom-[21.7%]">
                 <h1 className="md:text-xl md:font-semibold">{defence}</h1>
               </div>
               {/* Attack value setup */}
-              <div className="absolute md:left-[25.4%] md:bottom-[24.5%]">
+              <div className="absolute md:left-[25.4%] md:bottom-[21.5%]">
                 <h1 className="md:text-xl md:font-semibold">{attack}</h1>
               </div>
               {/* effectName value setup */}
-              <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
+              {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
                 <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
+              </div> */}
+              <div className="effect-boxes absolute md:left-[32.4%] md:bottom-[23.7%]">
+                {effectNames.map((detail, index) => (
+                  <div key={index} className="effect-detail-box">
+                    <p className="mb-10">{effectNames[index]}</p>
+                  </div>
+                ))}
               </div>
               {/* image */}
               <div>
@@ -193,9 +208,17 @@ const Left_Side = () => {
         {/* ID Card Image start.......................................................*/}
         {currentView === 'idCard' && (
           <div>
+            {/* card details */}
+            <div className="effect-boxes absolute md:left-[25.4%] md:w-[50%] md:top-[17.7%] grid grid-cols-1 gap-5">
+              {effectDetails.map((detail, index) => (
+                <div key={index} className="effect-detail-box p-2 md:h-24">
+                  <p className="mb-10"> <span>{effectDetails[index]}</span></p>
+                </div>
+              ))}
+            </div>
             <img
               className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-              src={BckImg2}
+              src={BckImg4}
               alt="ID Card"
             />
             {/* Add your additional HTML code here */}
@@ -216,9 +239,10 @@ const Left_Side = () => {
                 </div>
               </div>
               {/* card type change */}
-              <div className="absolute md:left-[76.4%] md:bottom-[26.4%]">
-                <h1 className="text-xs font-bold">{cardType}</h1>
+              <div className="absolute md:left-[76%] md:bottom-[24%]">
+                <h1 className="text-xs">{cardType}</h1>
               </div>
+
               {/* image */}
               <div>
                 <img className="absolute -z-50 border-0 md:left-[20%] top-[14%] md:w-[320px] md:h-[360px]" src={image} alt="" style={{ width: '260', height: '260' }} />

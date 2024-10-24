@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StateContext } from "../../context/globalContext";
 
 
 const Right_Side = () => {
 
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType, attack, setAttack, defence, setDefence,effectName,setEffectName } = useContext(StateContext);
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType,SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, cardRank, setCardRank, effectNames, setEffectNames, effectDetails, setEffectDetails } = useContext(StateContext);
+  const maxLength = 50; // Set the maximum length for effect names based on available space
+
   // Subset গুলো ড্রপডাউন মেনুতে দেখানোর জন্য একটি লিস্ট তৈরি করা হলো
   const subsets = [
     'Custom', 'The_Wandering_Subset', 'The_Forest_Guard_Subset', 'The_Beast_Subset', 'The_Reaper_Subset',
@@ -14,6 +16,7 @@ const Right_Side = () => {
   // State তৈরি করা হলো subset এবং custom icon-এর জন্য
   // const [selectedSubset, setSelectedSubset] = useState('');
   // const [customIcon, setCustomIcon] = useState(null);
+
 
   // subset সিলেক্ট করার ফাংশন
   const handleSubsetChange = (event) => {
@@ -61,6 +64,7 @@ const Right_Side = () => {
     else {
       setCardType('SUP')
     }
+    setSelectCardType(e.target.value)
   }
 
   // function for setting attack value
@@ -68,15 +72,49 @@ const Right_Side = () => {
     setAttack(e.target.value)
   }
 
-  // function for setting defence value
+  // function for setting defence value 
   const handleSetDefence = e => {
     setDefence(e.target.value)
   }
 
   // function for set Effect Name
-  const handleSetEffectName=e=>{
-    setEffectName(e.target.value);
-  }
+  // const handleSetEffectName = e => {
+  //   setEffectName(e.target.value);
+  // }
+
+
+
+  // Function to dynamically change the number of effect names and effect details based on card rank
+  useEffect(() => {
+    if (cardRank === 'R1' || cardRank === 'Runes') {
+      setEffectNames(['']); // 1 effect name for R1 or Runes
+      setEffectDetails(['']); // 1 effect detail for R1 or Runes
+    } else if (cardRank === 'R2') {
+      setEffectNames(['', '']); // 2 effect names for R2
+      setEffectDetails(['', '']); // 2 effect details for R2
+    } else if (cardRank === 'R3') {
+      setEffectNames(['', '', '']); // 3 effect names for R3
+      setEffectDetails(['', '', '']); // 3 effect details for R3
+    }
+  }, [cardRank]);
+
+  // Handle changes in effect names
+  const handleEffectNameChange = (index, value) => {
+    if (value.length <= maxLength) { // Limit input length
+      const newEffectNames = [...effectNames];
+      newEffectNames[index] = value;
+      setEffectNames(newEffectNames);
+    }
+  };
+
+  // Handle changes in effect details
+  const handleEffectDetailChange = (index, value) => {
+    if (value.length <= maxLength) { // Limit input length
+      const newEffectDetails = [...effectDetails];
+      newEffectDetails[index] = value;
+      setEffectDetails(newEffectDetails);
+    }
+  };
 
 
   return (
@@ -136,14 +174,15 @@ const Right_Side = () => {
               Card Rank
             </span>
           </label>
-          <select className="select bg-black select-bordered w-full">
-            <option>Rank 1</option>
-            <option>Rank 2</option>
-            <option>Rank 3</option>
+          <select value={cardRank} onChange={(e) => setCardRank(e.target.value)} className="select bg-black select-bordered w-full">
+            <option>R1</option>
+            <option>R2</option>
+            <option>R3</option>
             <option>Runes</option>
 
           </select>
         </div>
+
         {/* input field 4 card select type */}
         <div className="form-control">
           <label className="label">
@@ -151,7 +190,7 @@ const Right_Side = () => {
               Card Type
             </span>
           </label>
-          <select onChange={handleCardTypeChanged} value={cardType} className="select bg-black select-bordered w-full">
+          <select value={SelectCardType} onChange={handleCardTypeChanged} className="select bg-black select-bordered w-full">
             <option> Select Card Type</option>
             <option> Assault</option>
             <option>Defense</option>
@@ -200,8 +239,8 @@ const Right_Side = () => {
 
           />
         </div>
-        {/* input field 10 */}
-        <div className="form-control">
+        {/* input field 10  effect name purono*/}
+        {/* <div className="form-control">
           <label className="label">
             <span className="label-text font-semibold uppercase text-white">
               Effect Name
@@ -214,9 +253,9 @@ const Right_Side = () => {
             className="input bg-black input-bordered"
             required
           />
-        </div>
+        </div> */}
         {/* input field 11 */}
-        <div className="form-control">
+        {/* <div className="form-control">
           <label className="label">
             <span className="label-text font-semibold uppercase text-white">
               Effect Details
@@ -230,10 +269,39 @@ const Right_Side = () => {
             />
 
           </div>
-        </div>
+        </div> */}
       </div>
       {/* grid style end */}
-
+      {/* effect name and effect details...................................................... */}
+      <div className="mt-1">
+        {effectNames.map((effect, index) => (
+          <div className="grid grid-cols-2 gap-1" key={index}>
+            <div>
+              <label className="font-semibold">Effect Name {index + 1}</label>
+              <input
+                className="w-full input bg-black input-bordered"
+                type="text"
+                value={effect}
+                onChange={(e) => handleEffectNameChange(index, e.target.value)}
+                maxLength={maxLength} // Enforce max length in the input field
+              />
+              {/* <p>{effect.length}/{maxLength} characters</p> */}
+            </div>
+            {/* div 2 effect details part */}
+            <div>
+              <label className="font-semibold">Effect Details {index + 1}</label>
+              <input
+                className="w-full input input-bordered bg-black"
+                type="text"
+                value={effectDetails[index]}
+                onChange={(e) => handleEffectDetailChange(index, e.target.value)}
+                maxLength={maxLength} // Enforce max length in the input field
+              />
+              {/* <p>{effectDetails[index].length}/{maxLength} characters</p> */}
+            </div>
+          </div>
+        ))}
+      </div>
       {/* image input */}
       <div className="form-control">
         <label className="label">
@@ -255,18 +323,18 @@ const Right_Side = () => {
       </div>
 
       {/* Effect field */}
-      <div className="form-control">
+      {/* <div className="form-control">
         <label className="label">
           <span className="label-text font-semibold uppercase text-white">
             Effect
           </span>
         </label>
         <textarea name="" className="bg-black h-32" id=""></textarea>
-      </div>
+      </div> */}
 
       {/* demo image test */}
-      <h2 className="">Abul:{attack}</h2>
-
+      {/* Displaying effect details on the card */}
+  
     </div>
   );
 };
