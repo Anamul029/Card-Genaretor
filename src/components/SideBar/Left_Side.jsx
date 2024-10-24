@@ -27,7 +27,7 @@ import The_Harpy_Subset from "../../assets/images/The Harpy Subset Icon.png"
 const Left_Side = () => {
   // new practice
   // const [currentView, setCurrentView] = useState('standard'); // Initial view is 'standard'
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardRank, setCardRank, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial,currentView, setCurrentView } = useContext(StateContext);
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardRank, setCardRank, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial, currentView, setCurrentView } = useContext(StateContext);
   console.log(cardType);
   // Mapping the subset names to their respective icons
   const subsetIcons = {
@@ -52,11 +52,11 @@ const Left_Side = () => {
     R1: { general: BckImg1, id: BckImgID1 },
     R2: { general: BckImg2, id: BckImgID2 },
     R3: { general: BckImg3, id: BckImgID3 },
-    Runes: { general:BckImg4, id: BckImgID4 }
+    Runes: { general: BckImg4, id: BckImgID4 }
   };
   // State to manage selected rank
   // const [selectedRank, setSelectedRank] = useState('R1');
-  
+
   // State to track which image is currently shown (general or id)
   // const [currentView, setCurrentView] = useState('general');
 
@@ -232,6 +232,8 @@ const Left_Side = () => {
               </div>
             </div>
           </div>
+         
+
         )}
         {/* Genarel Rank image end......................................................... */}
         {/* ID Card Image start.......................................................*/}
