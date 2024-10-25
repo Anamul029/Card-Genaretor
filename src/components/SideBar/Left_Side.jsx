@@ -71,9 +71,8 @@ const Left_Side = () => {
 
   // Downloading system for div to jpeg
   const divEle = useRef();
-  console.log("🚀 ~ App ~ divEle:", divEle);
   const handleJpg = () => {
-    // console.log("🚀 ~ handleJpg ~ divEle.current:", divEle.current);
+    console.log("🚀 ~ handleJpg ~ divEle.current:");
     htmlToImage
       .toJpeg(divEle.current, { quality: 0.95 })
       .then(function (dataUrl) {
@@ -169,6 +168,22 @@ const Left_Side = () => {
     }
   };
 
+  const names = effectNames.map((detail, index) => {
+
+
+    if (effectNames[index] === '') {
+      return <div key={index} className="effect-detail-box w-[180px]  md:w-[100px]">
+        <div className="text-center invisible">Null</div>
+      </div>
+    }
+    else {
+      return <div key={index} className="effect-detail-box  w-[180px] md:w-[100px]">
+        <p className="">{effectNames[index]}</p>
+      </div>
+    }
+
+  })
+
 
   return (
     <div className=" md:w-2/5 z-50 relative">
@@ -179,7 +194,7 @@ const Left_Side = () => {
             <div className="relative">
 
               {/* structure div in down */}
-              <div className="" ref={divEle} onClick={handleJpg}>
+              <div className="" ref={divEle}>
                 <img
                   className="mx-auto h-[100%] w-full"
                   // src={BckImg2}
@@ -210,11 +225,7 @@ const Left_Side = () => {
                 <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
               </div> */}
                   <div className="effect-boxes absolute left-[15%] md:left-[32.4%] md:bottom-[11%] bottom-[10%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
-                    {effectNames.map((detail, index) => (
-                      <div key={index} className="effect-detail-box">
-                        <p className="">{effectNames[index]}</p>
-                      </div>
-                    ))}
+                    {names}
                   </div>
                   {/* image */}
 
@@ -253,7 +264,7 @@ const Left_Side = () => {
             <div className="relative">
 
               {/* structure div in down */}
-              <div ref={divEle} onClick={handleJpg}>
+              <div ref={divEle}>
                 {/* card details */}
                 <div className="effect-boxes  text-black absolute left-[7%] top-[22%] md:left-[11%] w-[50%] md:top-[23%] grid grid-cols-1  md:gap-7">
                   {effectDetails.map((detail, index) => (
@@ -343,7 +354,7 @@ const Left_Side = () => {
       <div className="grid md:grid-cols-2 h-auto gap-4 mx-6 mt-2 md:mt-4">
         <button onClick={reloadWebsite} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">New Card</button>
         <button onClick={downloadCardData} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">Save Card</button>
-        <button onClick={handleJpg} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">Export As</button>
+        <div onClick={handleJpg} className="text-center bg-[#515664] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">Export As</div>
         <button className="bg-[#515664] uppercase w-full p-1 relative overflow-hidden hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">
           Load Card
           <input
