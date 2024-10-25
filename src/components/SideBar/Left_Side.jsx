@@ -269,7 +269,7 @@ const Left_Side = () => {
                 <div className="effect-boxes  text-black absolute left-[7%] top-[22%] md:left-[11%] w-[50%] md:top-[23%] grid grid-cols-1  md:gap-7">
                   {effectDetails.map((detail, index) => (
                     <div key={index} className="effect-detail-box p-2 w-56 md:w-64 md:h-24">
-                      <p className="mb-10 text-xs md:text-[16px] text-center"> <span>{effectDetails[index]}</span></p>
+                      <p className="mb-7 text-xs md:text-[16px] text-center"> <span>{effectDetails[index]}</span></p>
                     </div>
                   ))}
                 </div>
