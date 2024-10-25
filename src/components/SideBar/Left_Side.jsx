@@ -183,99 +183,178 @@ const Left_Side = () => {
       <div ref={divEle} onClick={handleJpg}>
         {/* Genarel Rank image start................................................................ */}
         {currentView === 'general' && (
-          <div>
-            <img
-              className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-              // src={BckImg2}
-              src={images[cardRank].general}
-              alt="Standard Card"
-            />
-            {/* Add your additional HTML code here */}
-            <div className="text-center mt-4">
-              <div className="absolute left-[30%] top-[8%] z-50 text-2xl font-bold">
-                <h2 className="text-center text-black">{name}</h2>
-              </div>
-              {/* Selected Subset Icon */}
-              <div className="mt-4 absolute left-[18.9%] top-[8.4%] z-50">
-                <div className="w-12 h-12 border-2 border-gray-500 rounded-full flex items-center justify-center">
-                  {selectedIcon ? (
-                    <img src={selectedIcon} alt={selectedSubset} className="w-full h-full object-contain" />
-                  ) : customIcon ? (
-                    <img src={customIcon} alt="Custom Icon" className="w-full h-full rounded-full object-contain" />
-                  ) : (
-                    <p className="text-gray-400"></p> // Optional placeholder if no icon is selected/uploaded
-                  )}
-                </div>
-              </div>
-              {/* defense value setup */}
-              <div className="absolute md:left-[68%] md:bottom-[28%]">
-                <h1 className="md:text-xl md:font-semibold">{defence}</h1>
-              </div>
-              {/* Attack value setup */}
-              <div className="absolute md:left-[25.4%] md:bottom-[27.8%]">
-                <h1 className="md:text-xl md:font-semibold">{attack}</h1>
-              </div>
-              {/* effectName value setup */}
-              {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
+          <div className="w-[260px] md:w-[340px] mx-auto">
+            <div className="relative">
+
+              {/* structure div in down */}
+              <div>
+                <img
+                  className="mx-auto mt-2 h-[100%] w-full"
+                  // src={BckImg2}
+                  src={images[cardRank].general}
+                  alt="Standard Card"
+
+                />
+
+                <div className="text-center mt-4 border border-yellow-400">
+                  <div className="absolute left-[24%] md:left-[25.8%] top-[9%] md:top-[9.4%] z-50 md:text-xl font-bold">
+                    <h2 className="text-center text-black">{name}</h2>
+                  </div>
+
+                  {/* defense value setup */}
+                  <div className="absolute  right-[14%] bottom-[5%]">
+                    <h1 className=" md:font-semibold">{defence}</h1>
+                  </div>
+                  {/* Attack value setup */}
+                  <div className="absolute  left-[13%] bottom-[4.6%]">
+                    <h1 className=" md:font-semibold">{attack}</h1>
+                  </div>
+                  {/* effectName value setup */}
+                  {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
                 <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
               </div> */}
-              <div className="effect-boxes absolute md:left-[32.4%] md:bottom-[28.7%]">
-                {effectNames.map((detail, index) => (
-                  <div key={index} className="effect-detail-box">
-                    <p className="mb-10">{effectNames[index]}</p>
+                  <div className="effect-boxes absolute left-[15%] md:left-[32.4%] bottom-[14%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
+                    {effectNames.map((detail, index) => (
+                      <div key={index} className="effect-detail-box">
+                        <p className="">{effectNames[index]}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                  {/* image */}
+
+                </div>
+                <img className="absolute  -z-50 border-2 md:left-[0%] w-full border-black top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
+                {/* Selected Subset Icon */}
+
+                <div className="w-36 h-36 mt-0 absolute right-[62%] top-[0%] md:right-[69%] md:top-[3.6%] z-50">
+                  {selectedIcon ? (
+                    <img src={selectedIcon} alt={selectedSubset} className="rounded-full w-full h-full object-contain" />
+                  ) : customIcon ? (
+                    <img src={customIcon} alt="Custom Icon" className=" rounded-full w-full h-full object-contain" />
+                  ) : (
+                    <p className="text-gray-400"></p>
+                  )}
+                </div>
+
+
               </div>
-              {/* image */}
-              <div>
-                <img className="absolute -z-50 border-0 md:left-[20%] top-[14%] md:w-[320px] md:h-[360px]" src={image} alt="" style={{ width: '260', height: '260' }} />
-              </div>
+
+
             </div>
+            {/* Add your additional HTML code here */}
+
           </div>
-         
 
         )}
         {/* Genarel Rank image end......................................................... */}
         {/* ID Card Image start.......................................................*/}
         {currentView === 'id' && (
-          <div>
-            {/* card details */}
-            <div className="effect-boxes text-black absolute md:left-[25.4%] md:w-[50%] md:top-[17.7%] grid grid-cols-1 gap-5">
-              {effectDetails.map((detail, index) => (
-                <div key={index} className="effect-detail-box p-2 md:h-24">
-                  <p className="mb-10"> <span>{effectDetails[index]}</span></p>
+          // <div>
+          //   {/* card details */}
+          //   <div className="effect-boxes text-black absolute md:left-[25.4%] md:w-[50%] md:top-[17.7%] grid grid-cols-1 gap-5">
+          //     {effectDetails.map((detail, index) => (
+          //       <div key={index} className="effect-detail-box p-2 md:h-24">
+          //         <p className="mb-10"> <span>{effectDetails[index]}</span></p>
+          //       </div>
+          //     ))}
+          //   </div>
+          //   <img
+          //     className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
+          //     // src={BckImgID2}
+          //     src={images[cardRank].id}
+          //     alt="ID Card"
+          //   />
+          //   {/* Add your additional HTML code here */}
+          //   <div className="text-center mt-4">
+          //     <div className="absolute left-[30%]  top-[8%] z-50 text-2xl text-white font-bold">
+          //       <h2 className="text-center text-black">{name}</h2>
+          //     </div>
+          //     {/* Selected Subset Icon */}
+          //     <div className="mt-4 absolute left-[20%] top-[10.6%] z-50">
+          //       <h2>{serial}</h2>
+          //     </div>
+          //     {/* card type change */}
+          //     <div className="absolute md:left-[76.3%] md:bottom-[29.7%]">
+          //       <h1 className="text-xs">{cardType}</h1>
+          //     </div>
+          //     {/* card Rank change */}
+          //     <div className="absolute md:left-[19%] md:bottom-[29%]">
+          //       <h1 className="text- font-semubold">{cardRank}</h1>
+          //     </div>
+
+          //     {/* image */}
+          //     <div>
+          //       <img className="absolute -z-50 border-0 md:left-[20%] top-[14%] md:w-[320px] md:h-[360px]" src={image} alt="" style={{ width: '260', height: '260' }} />
+          //     </div>
+          //   </div>
+          // </div>
+
+
+          // test and modify............................
+          <div className="w-[280px] md:w-[340px] mx-auto">
+            <div className="relative">
+              {/* card details */}
+              <div className="effect-boxes  text-black absolute left-[10%] top-[20%] md:left-[11%] w-[50%] md:top-[20%] grid grid-cols-1  md:gap-7">
+                {effectDetails.map((detail, index) => (
+                  <div key={index} className="effect-detail-box p-2 w-56 md:w-64 md:h-24">
+                    <p className="mb-10 text-xs md:text-[16px] text-center"> <span>{effectDetails[index]}</span></p>
+                  </div>
+                ))}
+              </div>
+              {/* structure div in down */}
+              <div>
+
+                <img
+                  className="mx-auto mt-2 h-[100%] w-full"
+                  // src={BckImg2}
+                  src={images[cardRank].id}
+                  alt="Standard Card"
+
+                />
+
+                <div className="text-center mt-4 border border-yellow-400">
+                  <div className="absolute left-[24%] md:left-[25.8%] top-[9%] md:top-[9.4%] z-50 md:text-xl font-bold">
+                    <h2 className="text-center text-black">{name}</h2>
+                  </div>
+
+                  {/* Selected Serial No */}
+                  <div className="mt-4 absolute top-[11.5%] left-[4.3%] md:left-[5%] md:top-[12.5%] z-50">
+                    <h2>{serial}</h2>
+                  </div>
+                  {/* Attack value setup */}
+                  <div className="absolute  right-[2.6%] bottom-[7%]">
+                    <h1 className="text-xs">{cardType}</h1>
+                  </div>
+                  {/* card rank set */}
+                  <div className="absolute bottom-[6.4%] left-[3.6%] md:left-[3.6%] md:bottom-[6%]">
+                    <h1 className="text- font-semubold">{cardRank}</h1>
+                  </div>
+                  {/* effectName value setup */}
+                  {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
+              <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
+            </div> */}
+                  {/* <div className="effect-boxes absolute left-[15%] md:left-[32.4%] bottom-[14%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
+                    {effectNames.map((detail, index) => (
+                      <div key={index} className="effect-detail-box">
+                        <p className="">{effectNames[index]}</p>
+                      </div>
+                    ))}
+                  </div> */}
+                  {/* image */}
+
                 </div>
-              ))}
-            </div>
-            <img
-              className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-              // src={BckImgID2}
-              src={images[cardRank].id}
-              alt="ID Card"
-            />
-            {/* Add your additional HTML code here */}
-            <div className="text-center mt-4">
-              <div className="absolute left-[30%]  top-[8%] z-50 text-2xl text-white font-bold">
-                <h2 className="text-center text-black">{name}</h2>
-              </div>
-              {/* Selected Subset Icon */}
-              <div className="mt-4 absolute left-[20%] top-[10.6%] z-50">
-                <h2>{serial}</h2>
-              </div>
-              {/* card type change */}
-              <div className="absolute md:left-[76.3%] md:bottom-[29.7%]">
-                <h1 className="text-xs">{cardType}</h1>
-              </div>
-              {/* card Rank change */}
-              <div className="absolute md:left-[19%] md:bottom-[29%]">
-                <h1 className="text- font-semubold">{cardRank}</h1>
+                <img className="absolute  -z-50 border-2 md:left-[0%] w-full border-black top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
+                {/* Selected Subset Icon */}
+
+
+
+
               </div>
 
-              {/* image */}
-              <div>
-                <img className="absolute -z-50 border-0 md:left-[20%] top-[14%] md:w-[320px] md:h-[360px]" src={image} alt="" style={{ width: '260', height: '260' }} />
-              </div>
+
             </div>
+            {/* Add your additional HTML code here */}
+
           </div>
         )}
 

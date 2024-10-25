@@ -124,7 +124,7 @@ const Right_Side = () => {
 
   return (
 
-    <div className="w-3/4 md:overflow-y-scroll mx-auto px-3">
+    <div className="w-3/5 md:overflow-y-scroll mx-auto px-3">
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-1">
         {/* input field 1 */}
         <div className="form-control">
