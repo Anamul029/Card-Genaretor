@@ -180,40 +180,40 @@ const Left_Side = () => {
 
   return (
     <div className=" md:w-2/5 z-50 relative">
-      <div ref={divEle} onClick={handleJpg}>
+      <div className="mx-auto">
         {/* Genarel Rank image start................................................................ */}
         {currentView === 'general' && (
-          <div className="w-[260px] md:w-[340px] mx-auto">
+          <div className="w-[260px] md:w-[340px] mt-2 mx-auto" >
             <div className="relative">
 
               {/* structure div in down */}
-              <div>
+              <div className="" ref={divEle} onClick={handleJpg}>
                 <img
-                  className="mx-auto mt-2 h-[100%] w-full"
+                  className="mx-auto h-[100%] w-full"
                   // src={BckImg2}
                   src={images[cardRank].general}
                   alt="Standard Card"
 
                 />
 
-                <div className="text-center mt-4 border border-yellow-400">
+                <div className="text-center mt-4 ">
                   <div className="absolute left-[24%] md:left-[25.8%] top-[9%] md:top-[9.4%] z-50 md:text-xl font-bold">
                     <h2 className="text-center text-black">{name}</h2>
                   </div>
 
                   {/* defense value setup */}
-                  <div className="absolute  right-[14%] bottom-[5%]">
+                  <div className="absolute  right-[14%] md:bottom-[2%] bottom-[1%]">
                     <h1 className=" md:font-semibold">{defence}</h1>
                   </div>
                   {/* Attack value setup */}
-                  <div className="absolute  left-[13%] bottom-[4.6%]">
+                  <div className="absolute  left-[13%] md:bottom-[1.5%] bottom-[0.5%]">
                     <h1 className=" md:font-semibold">{attack}</h1>
                   </div>
                   {/* effectName value setup */}
                   {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
                 <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
               </div> */}
-                  <div className="effect-boxes absolute left-[15%] md:left-[32.4%] bottom-[14%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
+                  <div className="effect-boxes absolute left-[15%] md:left-[32.4%] md:bottom-[11%] bottom-[10%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
                     {effectNames.map((detail, index) => (
                       <div key={index} className="effect-detail-box">
                         <p className="">{effectNames[index]}</p>
@@ -249,70 +249,30 @@ const Left_Side = () => {
         {/* Genarel Rank image end......................................................... */}
         {/* ID Card Image start.......................................................*/}
         {currentView === 'id' && (
-          // <div>
-          //   {/* card details */}
-          //   <div className="effect-boxes text-black absolute md:left-[25.4%] md:w-[50%] md:top-[17.7%] grid grid-cols-1 gap-5">
-          //     {effectDetails.map((detail, index) => (
-          //       <div key={index} className="effect-detail-box p-2 md:h-24">
-          //         <p className="mb-10"> <span>{effectDetails[index]}</span></p>
-          //       </div>
-          //     ))}
-          //   </div>
-          //   <img
-          //     className="mx-auto mt-2 md:h-[500px] md:w-[350px]"
-          //     // src={BckImgID2}
-          //     src={images[cardRank].id}
-          //     alt="ID Card"
-          //   />
-          //   {/* Add your additional HTML code here */}
-          //   <div className="text-center mt-4">
-          //     <div className="absolute left-[30%]  top-[8%] z-50 text-2xl text-white font-bold">
-          //       <h2 className="text-center text-black">{name}</h2>
-          //     </div>
-          //     {/* Selected Subset Icon */}
-          //     <div className="mt-4 absolute left-[20%] top-[10.6%] z-50">
-          //       <h2>{serial}</h2>
-          //     </div>
-          //     {/* card type change */}
-          //     <div className="absolute md:left-[76.3%] md:bottom-[29.7%]">
-          //       <h1 className="text-xs">{cardType}</h1>
-          //     </div>
-          //     {/* card Rank change */}
-          //     <div className="absolute md:left-[19%] md:bottom-[29%]">
-          //       <h1 className="text- font-semubold">{cardRank}</h1>
-          //     </div>
 
-          //     {/* image */}
-          //     <div>
-          //       <img className="absolute -z-50 border-0 md:left-[20%] top-[14%] md:w-[320px] md:h-[360px]" src={image} alt="" style={{ width: '260', height: '260' }} />
-          //     </div>
-          //   </div>
-          // </div>
-
-
-          // test and modify............................
-          <div className="w-[280px] md:w-[340px] mx-auto">
+          // Id Card mother div............................
+          <div className="w-[260px] md:w-[340px] mt-2 mx-auto" >
             <div className="relative">
-              {/* card details */}
-              <div className="effect-boxes  text-black absolute left-[10%] top-[20%] md:left-[11%] w-[50%] md:top-[20%] grid grid-cols-1  md:gap-7">
-                {effectDetails.map((detail, index) => (
-                  <div key={index} className="effect-detail-box p-2 w-56 md:w-64 md:h-24">
-                    <p className="mb-10 text-xs md:text-[16px] text-center"> <span>{effectDetails[index]}</span></p>
-                  </div>
-                ))}
-              </div>
-              {/* structure div in down */}
-              <div>
 
+              {/* structure div in down */}
+              <div ref={divEle} onClick={handleJpg}>
+                {/* card details */}
+                <div className="effect-boxes  text-black absolute left-[7%] top-[22%] md:left-[11%] w-[50%] md:top-[23%] grid grid-cols-1  md:gap-7">
+                  {effectDetails.map((detail, index) => (
+                    <div key={index} className="effect-detail-box p-2 w-56 md:w-64 md:h-24">
+                      <p className="mb-10 text-xs md:text-[16px] text-center"> <span>{effectDetails[index]}</span></p>
+                    </div>
+                  ))}
+                </div>
                 <img
-                  className="mx-auto mt-2 h-[100%] w-full"
+                  className="mx-auto h-[100%] w-full"
                   // src={BckImg2}
                   src={images[cardRank].id}
                   alt="Standard Card"
 
                 />
 
-                <div className="text-center mt-4 border border-yellow-400">
+                <div className="text-center">
                   <div className="absolute left-[24%] md:left-[25.8%] top-[9%] md:top-[9.4%] z-50 md:text-xl font-bold">
                     <h2 className="text-center text-black">{name}</h2>
                   </div>
@@ -322,11 +282,11 @@ const Left_Side = () => {
                     <h2>{serial}</h2>
                   </div>
                   {/* Attack value setup */}
-                  <div className="absolute  right-[2.6%] bottom-[7%]">
+                  <div className="absolute right-[1.5%]  md:right-[2.6%] bottom-[3.5%]">
                     <h1 className="text-xs">{cardType}</h1>
                   </div>
                   {/* card rank set */}
-                  <div className="absolute bottom-[6.4%] left-[3.6%] md:left-[3.6%] md:bottom-[6%]">
+                  <div className="absolute bottom-[2%] left-[2.5%] md:left-[3.6%] md:bottom-[3%]">
                     <h1 className="text- font-semubold">{cardRank}</h1>
                   </div>
                   {/* effectName value setup */}
@@ -347,8 +307,6 @@ const Left_Side = () => {
                 {/* Selected Subset Icon */}
 
 
-
-
               </div>
 
 
@@ -357,8 +315,6 @@ const Left_Side = () => {
 
           </div>
         )}
-
-        {/* id card image section end............................................ */}
 
 
       </div>
