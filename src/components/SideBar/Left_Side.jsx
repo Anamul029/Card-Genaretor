@@ -27,8 +27,8 @@ import The_Harpy_Subset from "../../assets/images/The Harpy Subset Icon.png"
 const Left_Side = () => {
   // new practice
   // const [currentView, setCurrentView] = useState('standard'); // Initial view is 'standard'
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardRank, setCardRank, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial, currentView, setCurrentView } = useContext(StateContext);
-  console.log(cardType);
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcons, setCustomIcon, cardRank, setCardRank, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, effectName, setEffectName, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial, currentView, setCurrentView } = useContext(StateContext);
+  console.log(customIcons);
   // Mapping the subset names to their respective icons
   const subsetIcons = {
     "The_Wandering_Subset": The_Wandering_Subset,
@@ -52,16 +52,8 @@ const Left_Side = () => {
     R1: { general: BckImg1, id: BckImgID1 },
     R2: { general: BckImg2, id: BckImgID2 },
     R3: { general: BckImg3, id: BckImgID3 },
-    Runes: { general: BckImg4, id: BckImgID4 }
+    Runes: { general: BckImgID4, id: BckImg4 }
   };
-  // State to manage selected rank
-  // const [selectedRank, setSelectedRank] = useState('R1');
-
-  // State to track which image is currently shown (general or id)
-  // const [currentView, setCurrentView] = useState('general');
-
-
-
 
 
   const selectedIcon = subsetIcons[selectedSubset] || ""; // Get the icon based on the 
@@ -203,11 +195,15 @@ const Left_Side = () => {
 
                   {/* defense value setup */}
                   <div className="absolute  right-[14%] md:bottom-[2%] bottom-[1%]">
-                    <h1 className=" md:font-semibold">{defence}</h1>
+                    {cardRank !== "Runes" &&
+                      <h1 className=" md:font-semibold">{defence}</h1>
+                    }
                   </div>
                   {/* Attack value setup */}
                   <div className="absolute  left-[13%] md:bottom-[1.5%] bottom-[0.5%]">
-                    <h1 className=" md:font-semibold">{attack}</h1>
+                    {cardRank !== "Runes" &&
+                      <h1 className=" md:font-semibold">{attack}</h1>
+                    }
                   </div>
                   {/* effectName value setup */}
                   {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
@@ -226,15 +222,17 @@ const Left_Side = () => {
                 <img className="absolute  -z-50 border-2 md:left-[0%] w-full border-black top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
                 {/* Selected Subset Icon */}
 
-                <div className="w-36 h-36 mt-0 absolute right-[62%] top-[0%] md:right-[69%] md:top-[3.6%] z-50">
-                  {selectedIcon ? (
-                    <img src={selectedIcon} alt={selectedSubset} className="rounded-full w-full h-full object-contain" />
-                  ) : customIcon ? (
-                    <img src={customIcon} alt="Custom Icon" className=" rounded-full w-full h-full object-contain" />
-                  ) : (
-                    <p className="text-gray-400"></p>
-                  )}
-                </div>
+                {cardRank !== "Runes" &&
+                  <div className="w-36 h-36 mt-0 absolute right-[62%] top-[0%] md:right-[69%] md:top-[3.6%] z-50">
+                    {selectedIcon ? (
+                      <img src={selectedIcon} alt={selectedSubset} className="rounded-full w-full h-full object-contain" />
+                    ) : customIcons ? (
+                      <img src={customIcons} alt="Custom Icon" className=" rounded-full w-full h-full object-contain" />
+                    ) : (
+                      <p className="text-gray-400"></p>
+                    )}
+                  </div>
+                }
 
 
               </div>
@@ -279,15 +277,21 @@ const Left_Side = () => {
 
                   {/* Selected Serial No */}
                   <div className="mt-4 absolute top-[11.5%] left-[4.3%] md:left-[5%] md:top-[12.5%] z-50">
-                    <h2>{serial}</h2>
+                    {cardRank !== "Runes" &&
+                      <h2>{serial}</h2>
+                    }
                   </div>
                   {/* Attack value setup */}
                   <div className="absolute right-[1.5%]  md:right-[2.6%] bottom-[3.5%]">
-                    <h1 className="text-xs">{cardType}</h1>
+                    {cardRank !== "Runes" &&
+                      <h2 className="text-xs">{cardType}</h2>
+                    }
                   </div>
                   {/* card rank set */}
                   <div className="absolute bottom-[2%] left-[2.5%] md:left-[3.6%] md:bottom-[3%]">
-                    <h1 className="text- font-semubold">{cardRank}</h1>
+                    {cardRank !== "Runes" &&
+                      <h1 className="text- font-semubold">{cardRank}</h1>
+                    }
                   </div>
                   {/* effectName value setup */}
                   {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">

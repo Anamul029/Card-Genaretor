@@ -4,12 +4,12 @@ import { StateContext } from "../../context/globalContext";
 
 const Right_Side = () => {
 
-  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, cardRank, setCardRank, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial,currentView, setCurrentView } = useContext(StateContext);
+  const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcons, setCustomIcon, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, cardRank, setCardRank, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial,currentView, setCurrentView } = useContext(StateContext);
   const maxLength = 100; // Set the maximum length for effect names based on available space
 
   // Subset গুলো ড্রপডাউন মেনুতে দেখানোর জন্য একটি লিস্ট তৈরি করা হলো
   const subsets = [
-    'Custom', 'The_Wandering_Subset', 'The_Forest_Guard_Subset', 'The_Beast_Subset', 'The_Reaper_Subset',
+    'The_Wandering_Subset', 'The_Forest_Guard_Subset', 'The_Beast_Subset', 'The_Reaper_Subset',
     'The_Iron_Kappa_Subset', 'The_Valiant_Subset', 'The_Daemon_Subset', 'The_Aria_Subset', 'The_Wyvern_Subset',
     'The_Asylum_Subset', 'The_Gladiator_Subset', 'The_Minotaurus_Subset', 'The_Swamp_Dweller_Subset', 'The_Harpy_Subset', 'Generic'
   ];
@@ -163,12 +163,12 @@ const Right_Side = () => {
             ))}
           </select>
           {/* Custom Icon Upload */}
-          {selectedSubset === 'Custom' && (
+          {/* {selectedSubset === 'Custom' && (
             <div className="mt-4">
               <label className="block mb-2 text-sm font-medium text-gray-700">Upload Custom Icon:</label>
-              <input type="file" value={customIcon} accept="image/*" onChange={handleIconUpload} className="block w-full text-sm text-gray-500" />
+              <input type="file" value={customIcons} accept="image/*" onChange={handleIconUpload} className="block w-full text-sm text-gray-500" />
             </div>
-          )}
+          )} */}
 
           {/* Selected Subset Icon */}
         </div>

@@ -8,7 +8,7 @@ const StateProvider = ({ children }) => {
   const [name, setName] = useState();
   const [image, setImage] = useState(null); // Add image state
   const [selectedSubset, setSelectedSubset] = useState('');
-  const [customIcon, setCustomIcon] = useState(null);
+  const [customIcons, setCustomIcon] = useState(null);
   const [cardType, setCardType] = useState('');
   const [SelectCardType, setSelectCardType] = useState('');
   const [serial,setSerial] = useState('');
@@ -27,7 +27,7 @@ const StateProvider = ({ children }) => {
 
   return (
     <StateContext.Provider
-      value={{ name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcon, setCustomIcon, cardType, setCardType, attack, setAttack, defence, setDefence, effectName, setEffectName,cardRank, setCardRank,effectNames, setEffectNames,effectDetails, setEffectDetails,SelectCardType, setSelectCardType,serial,setSerial,currentView, setCurrentView }
+      value={{ name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcons, setCustomIcon, cardType, setCardType, attack, setAttack, defence, setDefence, effectName, setEffectName,cardRank, setCardRank,effectNames, setEffectNames,effectDetails, setEffectDetails,SelectCardType, setSelectCardType,serial,setSerial,currentView, setCurrentView }
       }>
       {children}
     </StateContext.Provider>
