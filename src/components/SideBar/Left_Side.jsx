@@ -127,7 +127,7 @@ const Left_Side = () => {
     link.href = URL.createObjectURL(blob);
 
     // Set the download attribute for the file name
-    link.download = `${name}_card.json`;
+    link.download = `${name}_${cardRank}_card.json`;
 
     // Trigger the download by simulating a click on the link
     link.click();

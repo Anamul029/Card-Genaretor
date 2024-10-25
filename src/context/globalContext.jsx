@@ -9,7 +9,7 @@ const StateProvider = ({ children }) => {
   const [image, setImage] = useState(null); // Add image state
   const [selectedSubset, setSelectedSubset] = useState('');
   const [customIcons, setCustomIcon] = useState(null);
-  const [cardType, setCardType] = useState('');
+  const [cardType, setCardType] = useState('R1');
   const [SelectCardType, setSelectCardType] = useState('');
   const [serial,setSerial] = useState('');
   const [attack, setAttack] = useState('');

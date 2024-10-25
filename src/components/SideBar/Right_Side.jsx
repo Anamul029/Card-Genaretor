@@ -6,7 +6,8 @@ const Right_Side = () => {
 
   const { name, setName, image, setImage, selectedSubset, setSelectedSubset, customIcons, setCustomIcon, cardType, setCardType, SelectCardType, setSelectCardType, attack, setAttack, defence, setDefence, cardRank, setCardRank, effectNames, setEffectNames, effectDetails, setEffectDetails, serial, setSerial,currentView, setCurrentView } = useContext(StateContext);
   const maxLength = 100; // Set the maximum length for effect names based on available space
-
+  const maxLenName=15;
+  const maxLenEffectName=20;
   // Subset গুলো ড্রপডাউন মেনুতে দেখানোর জন্য একটি লিস্ট তৈরি করা হলো
   const subsets = [
     'The_Wandering_Subset', 'The_Forest_Guard_Subset', 'The_Beast_Subset', 'The_Reaper_Subset',
@@ -136,6 +137,7 @@ const Right_Side = () => {
           <input
             type="text"
             name="name"
+            maxLength={maxLenName}
             value={name}
             // onChange={setName}
             onChange={(e) => setName(e.target.value)}
@@ -307,7 +309,7 @@ const Right_Side = () => {
                 type="text"
                 value={effect}
                 onChange={(e) => handleEffectNameChange(index, e.target.value)}
-                maxLength={maxLength} // Enforce max length in the input field
+                maxLength={maxLenEffectName} // Enforce max length in the input field
               />
               {/* <p>{effect.length}/{maxLength} characters</p> */}
             </div>
