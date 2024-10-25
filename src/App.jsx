@@ -7,7 +7,7 @@ import './styles/customFonts.css';
 function App() {
   return (
     <>
-      <div className="bg-[#2c2929] font-immortal min-h-screen text-white"> 
+      <div className="bg-[#2c2929] w-[500px] md:w-full font-immortal min-h-screen text-white"> 
         <NavBar />
         <div className="flex flex-col bg-blue-950 mt-1  md:flex-row">
           <Left_Side />
