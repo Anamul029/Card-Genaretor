@@ -1,13 +1,21 @@
 import * as htmlToImage from "html-to-image";
 import { useContext, useRef } from "react";
-import BckImg1 from "../../assets/images/RANK 1.png";
-import BckImgID1 from "../../assets/images/RANK 1 ID.png";
-import BckImg2 from "../../assets/images/RANK 2.png";
-import BckImgID2 from "../../assets/images/RANK 2 ID.png";
-import BckImg3 from "../../assets/images/RANK 3.png";
-import BckImgID3 from "../../assets/images/RANK 3 ID.png";
-import BckImg4 from "../../assets/images/RUNE 1.png";
-import BckImgID4 from "../../assets/images/BLANK.png";
+import BckImg1 from "../../assets/images/test.png";
+import BckImgID1 from "../../assets/images/test_Id.png";
+import BckImg2 from "../../assets/images/test2.png";
+import BckImgID2 from "../../assets/images/test2_Id.png";
+import BckImg3 from "../../assets/images/test3.png";
+import BckImgID3 from "../../assets/images/test3_Id.png";
+import BckImg4 from "../../assets/images/rune.png";
+import BckImgID4 from "../../assets/images/rune_blank.png";
+// import BckImg1 from "../../assets/images/RANK 1.png";
+// import BckImgID1 from "../../assets/images/RANK 1 ID.png";
+// import BckImg2 from "../../assets/images/RANK 2.png";
+// import BckImgID2 from "../../assets/images/RANK 2 ID.png";
+// import BckImg3 from "../../assets/images/RANK 3.png";
+// import BckImgID3 from "../../assets/images/RANK 3 ID.png";
+// import BckImg4 from "../../assets/images/RUNE 1.png";
+// import BckImgID4 from "../../assets/images/BLANK.png";
 
 import { StateContext } from "../../context/globalContext";
 import The_Wandering_Subset from "../../assets/images/THE WANDERING SUBSET.png"
@@ -177,8 +185,8 @@ const Left_Side = () => {
       </div>
     }
     else {
-      return <div key={index} className="effect-detail-box  w-[180px] md:w-[100px]">
-        <p className="">{effectNames[index]}</p>
+      return <div key={index} className="effect-detail-box  w-[180px] md:w-[250px]">
+        <p className="text-xs md:text-xl">{effectNames[index]}</p>
       </div>
     }
 
@@ -197,9 +205,10 @@ const Left_Side = () => {
               <div className="" ref={divEle}>
                 <img
                   className="mx-auto h-[100%] w-full"
-                  // src={BckImg2}
                   src={images[cardRank].general}
+                  // src="https://i.ibb.co.com/bdDqKmv/RANK-1.png"
                   alt="Standard Card"
+                  loading="lazy"
 
                 />
 
@@ -222,7 +231,7 @@ const Left_Side = () => {
                     }
                   </div>
                   {/* effect Names */}
-                  <div className="effect-boxes absolute left-[15%] md:left-[32.4%] md:bottom-[11%] bottom-[10%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
+                  <div className="effect-boxes absolute left-[15%] md:left-[14.4%] md:bottom-[11%] bottom-[11.5%] text-black font-bold  grid grid-cols-1 gap-7 md:gap-8">
                     {names}
                   </div>
                 </div>
@@ -272,6 +281,7 @@ const Left_Side = () => {
                   className="mx-auto h-[100%] w-full"
                   src={images[cardRank].id}
                   alt="Standard Card"
+                  loading="lazy"
 
                 />
 
@@ -299,23 +309,11 @@ const Left_Side = () => {
                       <h1 className="text- font-semubold">{cardRank}</h1>
                     }
                   </div>
-                  {/* effectName value setup */}
-                  {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
-              <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
-            </div> */}
-                  {/* <div className="effect-boxes absolute left-[15%] md:left-[32.4%] bottom-[14%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
-                    {effectNames.map((detail, index) => (
-                      <div key={index} className="effect-detail-box">
-                        <p className="">{effectNames[index]}</p>
-                      </div>
-                    ))}
-                  </div> */}
-                  {/* image */}
 
                 </div>
+                {/* ID Image */}
                 <img className="absolute  -z-50 md:left-[0%] w-full  top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
                 {/* Selected Subset Icon */}
-
 
               </div>
 
