@@ -231,9 +231,11 @@ const Left_Side = () => {
                     }
                   </div>
                   {/* effect Names */}
-                  <div className="effect-boxes absolute left-[15%] md:left-[14.4%] md:bottom-[11%] bottom-[11.5%] text-black font-bold  grid grid-cols-1 gap-7 md:gap-8">
-                    {names}
-                  </div>
+                  {cardRank !== "Runes" &&
+                    <div className="effect-boxes absolute left-[15%] md:left-[14.4%] md:bottom-[11%] bottom-[11.5%] text-black font-bold  grid grid-cols-1 gap-7 md:gap-8">
+                      {names}
+                    </div>
+                  }
                 </div>
                 {/* upload Image */}
                 <img className="absolute  -z-50 md:left-[0%] w-full  top-[14%] h-[70%]" src={image} alt="" />
@@ -358,7 +360,7 @@ const Left_Side = () => {
           />
         </button>
       </div>
-     
+
     </div >
   );
 };
