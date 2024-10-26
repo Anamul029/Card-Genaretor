@@ -366,22 +366,9 @@ const Right_Side = () => {
           type="file"
           className="file-input file-input-ghost w-full bg-black"
         /> */}
-        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <input className="text-black" type="file" accept="image/*" onChange={handleImageChange} />
 
       </div>
-
-      {/* Effect field */}
-      {/* <div className="form-control">
-        <label className="label">
-          <span className="label-text font-semibold uppercase text-white">
-            Effect
-          </span>
-        </label>
-        <textarea name="" className="bg-black h-32" id=""></textarea>
-      </div> */}
-
-      {/* demo image test */}
-      {/* Displaying effect details on the card */}
 
     </div>
   );
