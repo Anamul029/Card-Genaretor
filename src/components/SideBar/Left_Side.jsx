@@ -1,5 +1,5 @@
 import * as htmlToImage from "html-to-image";
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import BckImg1 from "../../assets/images/RANK 1.png";
 import BckImgID1 from "../../assets/images/RANK 1 ID.png";
 import BckImg2 from "../../assets/images/RANK 2.png";
@@ -189,7 +189,7 @@ const Left_Side = () => {
     <div className=" md:w-2/5 z-50 relative">
       <div className="mx-auto">
         {/* Genarel Rank image start................................................................ */}
-        {currentView === 'general' && (
+        {currentView && currentView === 'general' && (
           <div className="w-[260px] md:w-[340px] mt-2 mx-auto" >
             <div className="relative">
 
@@ -204,8 +204,9 @@ const Left_Side = () => {
                 />
 
                 <div className="text-center mt-4 ">
-                  <div className="absolute left-[24%] md:left-[25.8%] top-[9%] md:top-[9.4%] z-50 md:text-xl font-bold">
-                    <h2 className="text-center text-black">{name}</h2>
+                  {/* Card Name */}
+                  <div className="absolute left-[18%] md:left-[16.8%] top-[9%] md:top-[9.2%] z-50 md:text-xl font-bold">
+                    <h2 className="text-center text-black w-[180px] md:w-[240px]">{name}</h2>
                   </div>
 
                   {/* defense value setup */}
@@ -220,17 +221,13 @@ const Left_Side = () => {
                       <h1 className=" md:font-semibold">{attack}</h1>
                     }
                   </div>
-                  {/* effectName value setup */}
-                  {/* <div className="absolute md:left-[32.4%] md:bottom-[31.7%]">
-                <h1 className="md:font-bold md:text-xl text-black">{effectName}</h1>
-              </div> */}
+                  {/* effect Names */}
                   <div className="effect-boxes absolute left-[15%] md:left-[32.4%] md:bottom-[11%] bottom-[10%] text-black font-bold  grid grid-cols-1 gap-6 md:gap-9">
                     {names}
                   </div>
-                  {/* image */}
-
                 </div>
-                <img className="absolute  -z-50 border-2 md:left-[0%] w-full border-black top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
+                {/* upload Image */}
+                <img className="absolute  -z-50 md:left-[0%] w-full  top-[14%] h-[70%]" src={image} alt="" />
                 {/* Selected Subset Icon */}
 
                 {cardRank !== "Runes" &&
@@ -245,9 +242,7 @@ const Left_Side = () => {
                   </div>
                 }
 
-
               </div>
-
 
             </div>
             {/* Add your additional HTML code here */}
@@ -275,15 +270,15 @@ const Left_Side = () => {
                 </div>
                 <img
                   className="mx-auto h-[100%] w-full"
-                  // src={BckImg2}
                   src={images[cardRank].id}
                   alt="Standard Card"
 
                 />
 
                 <div className="text-center">
-                  <div className="absolute left-[24%] md:left-[25.8%] top-[9%] md:top-[9.4%] z-50 md:text-xl font-bold">
-                    <h2 className="text-center text-black">{name}</h2>
+                  {/* card Name */}
+                  <div className="absolute left-[18%] md:left-[16.8%] top-[9%] md:top-[9.2%] z-50 md:text-xl font-bold">
+                    <h2 className="text-center text-black w-[180px] md:w-[240px]">{name}</h2>
                   </div>
 
                   {/* Selected Serial No */}
@@ -318,7 +313,7 @@ const Left_Side = () => {
                   {/* image */}
 
                 </div>
-                <img className="absolute  -z-50 border-2 md:left-[0%] w-full border-black top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
+                <img className="absolute  -z-50 md:left-[0%] w-full  top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
                 {/* Selected Subset Icon */}
 
 

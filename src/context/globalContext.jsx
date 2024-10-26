@@ -9,13 +9,13 @@ const StateProvider = ({ children }) => {
   const [image, setImage] = useState(null); // Add image state
   const [selectedSubset, setSelectedSubset] = useState('');
   const [customIcons, setCustomIcon] = useState(null);
-  const [cardType, setCardType] = useState('R1');
+  const [cardType, setCardType] = useState('');
   const [SelectCardType, setSelectCardType] = useState('');
   const [serial,setSerial] = useState('');
   const [attack, setAttack] = useState('');
   const [defence, setDefence] = useState('');
   const [effectName, setEffectName] = useState('');
-  const [cardRank, setCardRank] = useState('R1');
+  const [cardRank, setCardRank] = useState('Runes');
   const [effectNames, setEffectNames] = useState(['']); // Start with one empty effect name
   const [effectDetails, setEffectDetails] = useState(['']); // Corresponding effect details
   const [currentView, setCurrentView] = useState('general');

@@ -80,7 +80,12 @@ const Right_Side = () => {
 
   // manage Serial SR1 to SR10
   const handleSerial = e => {
-    setSerial(e.target.value);
+    if(e.target.value !=='Select Rating'){
+      setSerial(e.target.value);
+    }
+    else{
+      setSerial('')
+    }
   }
 
   // function for set Effect Name
@@ -223,6 +228,7 @@ const Right_Side = () => {
               Synergy Rating            </span>
           </label>
           <select value={serial} onChange={handleSerial} className="select bg-black select-bordered w-full">
+          <option>Select Rating</option>
             <option>SR1</option>
             <option>SR2</option>
             <option>SR3</option>
