@@ -26,33 +26,109 @@ const Right_Side = () => {
   };
 
   // Custom icon আপলোডের জন্য ফাংশন
-  const handleIconUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCustomIcon(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleIconUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setCustomIcon(reader.result);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
 
   // Function to handle file input change event
+  // const handleImageChange = (event) => {
+  //   const file = event.target.files[0]; // Get the selected file
+  //   if (file) {
+  //     const reader = new FileReader(); // Create a FileReader object
+
+  //     // Event listener for when the file is loaded
+  //     reader.onloadend = () => {
+  //       // setSelectedImage(reader.result); // Set the image data as the result
+  //       setImage(reader.result)
+  //     };
+
+  //     reader.readAsDataURL(file); // Read the file as a data URL (base64)
+  //   }
+  // };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
       const reader = new FileReader(); // Create a FileReader object
 
-      // Event listener for when the file is loaded
       reader.onloadend = () => {
-        // setSelectedImage(reader.result); // Set the image data as the result
-        setImage(reader.result)
+        const img = new Image();
+        img.src = reader.result;
+
+        img.onload = () => {
+          // Create a canvas element
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          // Set canvas dimensions (scale down if needed)
+          const maxWidth = 800; // Adjust max width as needed
+          const scaleSize = maxWidth / img.width;
+          canvas.width = maxWidth;
+          canvas.height = img.height * scaleSize;
+
+          // Draw image onto canvas
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          // Convert canvas to a compressed Data URL (JPEG with quality of 0.7)
+          const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.7); // Adjust quality as needed
+          setImage(compressedDataUrl); // Set the compressed image data
+          console.log(compressedDataUrl); // Log the Data URL to easily copy and paste
+        };
       };
 
       reader.readAsDataURL(file); // Read the file as a data URL (base64)
     }
   };
+
+
+  // convert the image into lower mb image
+  // const handleImageChange = (event) => {
+  //   const file = event.target.files[0]; // Get the selected file
+  //   if (file) {
+  //     const reader = new FileReader(); // Create a FileReader object
+
+  //     reader.onloadend = () => {
+  //       const img = new Image();
+  //       img.src = reader.result;
+
+  //       img.onload = () => {
+  //         // Create a canvas element
+  //         const canvas = document.createElement("canvas");
+  //         const ctx = canvas.getContext("2d");
+
+  //         // Set canvas dimensions (scale down if needed)
+  //         const maxWidth = 800; // Adjust max width as needed
+  //         const scaleSize = maxWidth / img.width;
+  //         canvas.width = maxWidth;
+  //         canvas.height = img.height * scaleSize;
+
+  //         // Draw image onto canvas
+  //         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+  //         // Convert canvas to a compressed data URL (JPEG with quality of 0.7)
+  //         canvas.toBlob(
+  //           (blob) => {
+  //             const compressedUrl = URL.createObjectURL(blob);
+  //             setImage(compressedUrl); // Set the compressed image data
+  //           },
+  //           "image/jpeg", // Output format
+  //           0.7 // Image quality
+  //         );
+  //       };
+  //     };
+
+  //     reader.readAsDataURL(file); // Read the file as a data URL (base64)
+  //   }
+  // };
+
 
   // function for handleCardTypeChanged 
   const handleCardTypeChanged = e => {
@@ -80,34 +156,15 @@ const Right_Side = () => {
 
   // manage Serial SR1 to SR10
   const handleSerial = e => {
-    if(e.target.value !=='Select Rating'){
+    if (e.target.value !== 'Select Rating') {
       setSerial(e.target.value);
     }
-    else{
+    else {
       setSerial('')
     }
   }
 
-  // function for set Effect Name
-  // const handleSetEffectName = e => {
-  //   setEffectName(e.target.value);
-  // }
 
-
-
-  // Function to dynamically change the number of effect names and effect details based on card rank
-  // useEffect(() => {
-  // if (cardRank === 'R1' || cardRank === 'Runes') {
-  //   setEffectNames(['']); // 1 effect name for R1 or Runes
-  //   setEffectDetails(['']); // 1 effect detail for R1 or Runes
-  // } else if (cardRank === 'R2') {
-  //   setEffectNames(['', '']); // 2 effect names for R2
-  //   setEffectDetails(['', '']); // 2 effect details for R2
-  // } else if (cardRank === 'R3') {
-  //   setEffectNames(['', '', '']); // 3 effect names for R3
-  //   setEffectDetails(['', '', '']); // 3 effect details for R3
-  // }
-  // }, []);
 
   // Handle changes in effect names
   const handleEffectNameChange = (index, value) => {
@@ -130,7 +187,7 @@ const Right_Side = () => {
 
   return (
 
-    <div className="w-3/5 md:overflow-y-scroll mx-auto px-3">
+    <div className="w-3/5 mb-4 md:overflow-y-scroll mx-auto px-3">
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-1">
         {/* input field 1 */}
         <div className="form-control">
@@ -228,7 +285,7 @@ const Right_Side = () => {
               Synergy Rating            </span>
           </label>
           <select value={serial} onChange={handleSerial} className="select bg-black select-bordered w-full">
-          <option>Select Rating</option>
+            <option>Select Rating</option>
             <option>SR1</option>
             <option>SR2</option>
             <option>SR3</option>
@@ -284,20 +341,7 @@ const Right_Side = () => {
           />
         </div>
         {/* input field 10  effect name purono*/}
-        {/* <div className="form-control">
-          <label className="label">
-            <span className="label-text font-semibold uppercase text-white">
-              Effect Name
-            </span>
-          </label>
-          <input
-            onChange={handleSetEffectName}
-            type="text"
-            value={effectName}
-            className="input bg-black input-bordered"
-            required
-          />
-        </div> */}
+      
         {/* input field 11 */}
         {/* <div className="form-control">
           <label className="label">
@@ -323,9 +367,9 @@ const Right_Side = () => {
           return (
             <div className="grid grid-cols-2 gap-1" key={index}>
               <div>
-                <label className="font-semibold">Effect Name {index + 1}</label>
+                <label className="text-xs md:text-xl md:font-semibold">Effect Name {index + 1}</label>
                 <input
-                  className="w-full input bg-black input-bordered"
+                  className="w-full input  bg-black input-bordered"
                   type="text"
                   value={effect ? effect : ''}
                   onChange={(e) => handleEffectNameChange(index, e.target.value)}
@@ -335,7 +379,7 @@ const Right_Side = () => {
               </div>
               {/* div 2 effect details part */}
               <div>
-                <label className="font-semibold">Effect Details {index + 1}</label>
+                <label className="text-xs md:text-xl md:font-semibold">Effect Details {index + 1}</label>
                 <input
                   className="w-full input input-bordered bg-black"
                   type="text"
@@ -366,7 +410,7 @@ const Right_Side = () => {
           type="file"
           className="file-input file-input-ghost w-full bg-black"
         /> */}
-        <input className="text-black" type="file" accept="image/*" onChange={handleImageChange} />
+        <input className="text-black w-[90%] mx-auto" type="file" accept="image/*" onChange={handleImageChange} />
 
       </div>
 

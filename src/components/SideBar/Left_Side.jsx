@@ -6,7 +6,7 @@ import BckImg2 from "../../assets/images/test2.png";
 import BckImgID2 from "../../assets/images/test2_Id.png";
 import BckImg3 from "../../assets/images/test3.png";
 import BckImgID3 from "../../assets/images/test3_Id.png";
-import BckImg4 from "../../assets/images/rune.png";
+import BckImg4 from "../../assets/images/RUNE one.png";
 import BckImgID4 from "../../assets/images/rune_blank.png";
 // import BckImg1 from "../../assets/images/RANK 1.png";
 // import BckImgID1 from "../../assets/images/RANK 1 ID.png";
@@ -91,19 +91,6 @@ const Left_Side = () => {
       });
   };
 
-
-  // save card data in json format
-
-  // const handleArtUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setCardArt(reader.result); // base64 or URL
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
   // Prepare card data for download
   const downloadCardData = () => {
     const cardData = {
@@ -116,7 +103,6 @@ const Left_Side = () => {
       attack: attack,
       cardRank: cardRank,
       defence: defence,
-      effectName: effectName,
       effectNames: effectNames,
       effectDetails: effectDetails,
       serial: serial,
@@ -194,7 +180,7 @@ const Left_Side = () => {
 
 
   return (
-    <div className=" md:w-2/5 z-50 relative">
+    <div className=" md:w-2/5 mb-4 z-50 relative">
       <div className="mx-auto">
         {/* Genarel Rank image start................................................................ */}
         {currentView && currentView === 'general' && (
@@ -206,9 +192,7 @@ const Left_Side = () => {
                 <img
                   className="mx-auto h-[100%] w-full"
                   src={images[cardRank].general}
-                  // src="https://i.ibb.co.com/bdDqKmv/RANK-1.png"
                   alt="Standard Card"
-                  loading="lazy"
 
                 />
 
@@ -238,7 +222,7 @@ const Left_Side = () => {
                   }
                 </div>
                 {/* upload Image */}
-                <img className="absolute  -z-50 md:left-[0%] w-full  top-[14%] h-[70%]" src={image} alt="" />
+                <img className="absolute  -z-50 md:left-[0%] w-full  top-[17%] h-[75%]" src={image} alt="" />
                 {/* Selected Subset Icon */}
 
                 {cardRank !== "Runes" &&
@@ -272,9 +256,9 @@ const Left_Side = () => {
               {/* structure div in down */}
               <div ref={divEle}>
                 {/* card details */}
-                <div className="effect-boxes  text-black absolute left-[7%] top-[22%] md:left-[11%] w-[50%] md:top-[23%] grid grid-cols-1  md:gap-7">
+                <div className="effect-boxes  text-black absolute left-[7%] top-[22%] md:left-[11%] w-[50%] md:top-[22%] grid grid-cols-1  gap-7 md:gap-7">
                   {effectDetails.map((detail, index) => (
-                    <div key={index} className="effect-detail-box p-2 w-56 md:w-64 md:h-24">
+                    <div key={index} className="effect-detail-box p-2 w-56 md:w-64  h-16 md:h-24">
                       <p className="mb-7 text-xs md:text-[16px] text-center"> <span>{effectDetails[index]}</span></p>
                     </div>
                   ))}
@@ -283,7 +267,6 @@ const Left_Side = () => {
                   className="mx-auto h-[100%] w-full"
                   src={images[cardRank].id}
                   alt="Standard Card"
-                  loading="lazy"
 
                 />
 
@@ -294,7 +277,7 @@ const Left_Side = () => {
                   </div>
 
                   {/* Selected Serial No */}
-                  <div className="mt-4 absolute top-[11.5%] left-[4.3%] md:left-[5%] md:top-[12.5%] z-50">
+                  <div className="mt-4 absolute top-[11.5%] left-[4.3%] md:left-[5.3%] md:top-[12.7%] z-50">
                     {cardRank !== "Runes" &&
                       <h2>{serial}</h2>
                     }
@@ -314,7 +297,7 @@ const Left_Side = () => {
 
                 </div>
                 {/* ID Image */}
-                <img className="absolute  -z-50 md:left-[0%] w-full  top-[14%] h-[70%]" src={image} alt="" style={{ width: '260', height: '260' }} />
+                <img className="absolute  -z-50 md:left-[0%] w-full  top-[16.8%] h-[75%]" src={image} alt="" style={{ width: '260', height: '260' }} />
                 {/* Selected Subset Icon */}
 
               </div>
@@ -350,7 +333,7 @@ const Left_Side = () => {
         <button onClick={reloadWebsite} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">New Card</button>
         <button onClick={downloadCardData} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">Save Card</button>
         <div onClick={handleJpg} className="text-center bg-[#515664] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">Export As</div>
-        <button className="bg-[#515664] uppercase w-full p-1 relative overflow-hidden hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">
+        <button className="bg-[#515664] uppercase w-full p-1  relative overflow-hidden hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">
           Load Card
           <input
             type="file"

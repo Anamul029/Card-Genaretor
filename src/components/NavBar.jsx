@@ -9,8 +9,7 @@ const NavBar = () => {
                 </div>
                 <div>
                     <h1 className="font-semibold text-xs  md:text-2xl md:mr-12">
-                        If fonts do not load, refresh.
-                    </h1>
+                    If Card rank selected,Please wait..</h1>
                 </div>
             </div>
         </div>
