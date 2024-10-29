@@ -9,7 +9,7 @@ const NavBar = () => {
                 </div>
                 <div>
                     <h1 className="font-semibold text-xs  md:text-2xl md:mr-12">
-                    If Card rank selected,Please wait..</h1>
+                    Please wait for the assets to load.</h1>
                 </div>
             </div>
         </div>

@@ -79,15 +79,29 @@ const Left_Side = () => {
 
   // Downloading system for div to jpeg
   const divEle = useRef();
-  const handleJpg = () => {
+  const handleJpeg = () => {
     console.log("🚀 ~ handleJpg ~ divEle.current:");
     htmlToImage
       .toJpeg(divEle.current, { quality: 0.95 })
       .then(function (dataUrl) {
         var link = document.createElement("a");
-        link.download = "my-image-name.jpeg";
+        link.download = "my-image.jpeg";
         link.href = dataUrl;
         link.click();
+      });
+  };
+  // Downloading system for div to jpg
+  const handleJpg = () => {
+    console.log("🚀 ~ handleJpg ~ divEle.current:", divEle.current);
+    htmlToImage.toJpeg(divEle.current, { quality: 0.95 })
+      .then(function (dataUrl) {
+        const link = document.createElement("a");
+        link.download = "my-image.jpg"; // Change to .jpg
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(function (error) {
+        console.error("Oops, something went wrong!", error);
       });
   };
 
@@ -277,9 +291,9 @@ const Left_Side = () => {
                   </div>
 
                   {/* Selected Serial No */}
-                  <div className="mt-4 absolute top-[11.5%] left-[4.3%] md:left-[5.3%] md:top-[12.7%] z-50">
+                  <div className="mt-4 absolute top-[11.5%] left-[4.3%] md:left-[5.35%] md:top-[12.9%] z-50">
                     {cardRank !== "Runes" &&
-                      <h2>{serial}</h2>
+                      <h2 className="md:font-semibold">{serial}</h2>
                     }
                   </div>
                   {/* Attack value setup */}
@@ -332,7 +346,30 @@ const Left_Side = () => {
       <div className="grid md:grid-cols-2 h-auto gap-4 mx-6 mt-2 md:mt-4">
         <button onClick={reloadWebsite} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">New Card</button>
         <button onClick={downloadCardData} className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">Save Card</button>
-        <div onClick={handleJpg} className="text-center bg-[#515664] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">Export As</div>
+        {/* <button>
+          <div onClick={handleJpg} className="text-center bg-[#515664] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">Export As</div>
+        </button> */}
+        {/* Open the modal using document.getElementById('ID').showModal() method */}
+        <button className="bg-[#515664] uppercase w-full p-1 hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm" onClick={() => document.getElementById('my_modal_1').showModal()}>Export As</button>
+        <dialog id="my_modal_1" className="modal">
+          <div className="modal-box">
+            <div className="flex justify-evenly">
+              <button className="w-[35%]">
+              <div onClick={handleJpg} className="text-center bg-[#c8b430] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">JPG.</div>
+              </button>
+              <button className="w-[35%]">
+                <div onClick={handleJpeg} className="text-center bg-[#28b82d] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">JPEG</div>
+              </button>
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn bg-blue-600">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+        {/* <div onClick={handleJpg} className="text-center bg-[#515664] uppercase w-full p-1 hover:bg-[#4caf3d] hover:text-white transition duration-300 ease-in-out rounded-sm">Export As</div> */}
         <button className="bg-[#515664] uppercase w-full p-1  relative overflow-hidden hover:bg-[#97a52b] hover:text-white transition duration-300 ease-in-out rounded-sm">
           Load Card
           <input
@@ -343,6 +380,7 @@ const Left_Side = () => {
           />
         </button>
       </div>
+      {/* practice */}
 
     </div >
   );
